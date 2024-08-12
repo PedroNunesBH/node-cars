@@ -4,6 +4,8 @@ const path = require("path")
 
 app = express()
 
+app.use(express.static(path.resolve(__dirname, "public")))
+
 app.set("view engine", "ejs")
 app.set("views", path.resolve(__dirname, "src", "views"))
 
