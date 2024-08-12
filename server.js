@@ -1,6 +1,17 @@
+require("dotenv").config()
+
 const express = require("express")
 const routes = require("./routes")
 const path = require("path")
+const mongoose = require("mongoose")
+
+mongoose.connect(process.env.CONNECTION_STRING)
+    .then(() => {
+        console.log("Conexão com o BD ok.")
+    })
+    .catch((err) => {
+        console.error("Ocorreu um erro ao tentar a conexão", err)
+    })
 
 app = express()
 
