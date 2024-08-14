@@ -8,6 +8,7 @@ const mongoose = require("mongoose")
 mongoose.connect(process.env.CONNECTION_STRING)
     .then(() => {
         console.log("Conexão com o BD ok.")
+        app.emit("dbReady")
     })
     .catch((err) => {
         console.error("Ocorreu um erro ao tentar a conexão", err)
@@ -22,6 +23,8 @@ app.set("views", path.resolve(__dirname, "src", "views"))
 
 app.use(routes)
 
-app.listen(3000, () => {
-    console.log("Aplicação rodando em localhost:3000")
+app.on("dbReady", () => {
+    app.listen(3000, () => {
+        console.log("Aplicação rodando em localhost:3000")
+    })
 })
