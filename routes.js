@@ -6,5 +6,6 @@ const registerCarController = require("./src/controllers/registerCarController")
 route.get("/", homeController.home)
 
 route.get("/registercar", registerCarController.registerCar)
+route.post("/registercar", registerCarController.registerCarPost)
 
 module.exports = route
