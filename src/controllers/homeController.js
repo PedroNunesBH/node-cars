@@ -1,3 +1,3 @@
 exports.home = (req, res) => {
-    res.render("index.ejs")
+    res.render("index.hbs")
 }

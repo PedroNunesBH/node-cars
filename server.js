@@ -4,6 +4,7 @@ const express = require("express")
 const routes = require("./routes")
 const path = require("path")
 const mongoose = require("mongoose")
+const exphbs = require("express-handlebars")
 
 mongoose.connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -18,8 +19,9 @@ app = express()
 
 app.use(express.static(path.resolve(__dirname, "public")))
 
-app.set("view engine", "ejs")
 app.set("views", path.resolve(__dirname, "src", "views"))
+app.engine('hbs', exphbs.engine({extname: "hbs"}))
+app.set("view engine", "hbs")
 
 app.use(routes)
 

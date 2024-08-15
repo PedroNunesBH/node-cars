@@ -1,3 +1,3 @@
 exports.registerCar = (req, res) => {
-    res.render("registerCar.ejs")
+    res.render("registerCar.hbs")
 }
