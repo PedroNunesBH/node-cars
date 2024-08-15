@@ -29,3 +29,18 @@ html, body {
     color: white;
     padding: 10px;
 }
+
+.form-register-car {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 500px;
+    width: 400px;
+}
+
+.btn-register-car {
+    color: white;
+    background-color: green;
+    border: 3px solid green;
+    border-radius: 5px;;
+}
