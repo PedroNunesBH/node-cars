@@ -3,15 +3,15 @@ const mongoose = require("mongoose")
 const CarSchema = new mongoose.Schema({
     model: {
         type: String,
-        required: True
+        required: true
     },
     brand: {
         type: String,
-        required: True
+        required: true
     },
     licensePlate: {
         type: String,
-        required: True
+        required: true
     },
     carYear: Number,
     entryDate: {
@@ -23,30 +23,30 @@ const CarSchema = new mongoose.Schema({
         default: "Em Orçamento"
     },
     problemDescription: {
-        type: Text,
-        required: True
+        type: String,
+        required: true
     },
     repairsCarriedOut: {
-        type: Text,
+        type: String,
         default: "Em Ánalise"
     },
     ownersName: {
         type: String,
-        required: True
+        required: true
     },
-    ownesEmail: String,
+    ownersEmail: String,
     ownersPhoneOne: {
         type: String,
-        required: True
+        required: true
     },
     ownersPhoneTwo: String,
     ownersCpf: {
         type: String,
-        required: True
+        required: true
     },
     deliveryDate: {
         type: Date,
-        default: "Em Orçamento"
+        default: null
     },
     repairPrice: {
         type: Number,
