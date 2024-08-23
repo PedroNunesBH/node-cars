@@ -21,7 +21,19 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.resolve(__dirname, "public")))
 
 app.set("views", path.resolve(__dirname, "src", "views"))
-app.engine('hbs', exphbs.engine({extname: "hbs"}))
+app.engine('hbs', exphbs.engine(
+    {extname: "hbs",
+    helpers: {
+        formatDate: function (datetime) {
+            const date = new Date(datetime)
+
+            const datePart = date.toLocaleDateString("pt-br")
+
+            const timePart = date.toLocaleTimeString("pt-br")
+
+            return `${datePart} ${timePart}`
+        }
+    }}))
 app.set("view engine", "hbs")
 
 app.use(routes)
