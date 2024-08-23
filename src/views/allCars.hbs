@@ -1,3 +1,41 @@
 <main>
-    
+    {{#if newCars.length }}
+        <table class="table-all-cars">
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Placa</th>
+                    <th>Ano</th>
+                    <th>Data de Entrada</th>
+                    <th>Status do Serviço</th>
+                    <th>Nome do Proprietário</th>
+                    <th>Email do Proprietário</th>
+                    <th>Telefone do Proprietário 1</th>
+                    <th>Telefone do Proprietário 2</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each newCars}}
+                <tr>
+                    <td>{{this.model}}</td>
+                    <td>{{this.brand}}</td>
+                    <td>{{this.licensePlate}}</td>
+                    <td>{{this.carYear}}</td>
+                    <td>{{this.entryDate}}</td>
+                    <td>{{this.serviceStatus}}</td>
+                    <td>{{this.ownersName}}</td>
+                    <td>{{this.ownersEmail}}</td>
+                    <td>{{this.ownersPhoneOne}}</td>
+                    <td>{{this.ownersPhoneTwo}}</td>
+                    <td><a class="table-all-cars-edit-link">Editar</a>
+                    <a class="table-all-cars-del-link">Excluir</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>Não há carros registrados.</p>
+    {{/if}}
 </main>
