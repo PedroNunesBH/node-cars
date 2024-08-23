@@ -1,0 +1,58 @@
+<main>
+    {{#if car}}
+        <h2>Nome</h2>
+        <form method="post" action="">
+            <label for="model">Modelo:</label>
+            <input type="text" id="model" name="model" value="{{car.model}}" required><br>
+
+            <label for="brand">Marca:</label>
+            <input type="text" id="brand" name="brand" value="{{car.brand}}" required><br>
+
+            <label for="licensePlate">Placa:</label>
+            <input type="text" id="licensePlate" name="licensePlate" value="{{car.licensePlate}}" required><br>
+
+            <label for="carYear">Ano:</label>
+            <input type="number" id="carYear" name="carYear" value="{{car.carYear}}"><br>
+
+            <label for="entryDate">Data de Entrada:</label>
+            <input type="date" id="entryDate" name="entryDate" value="{{formatDate car.entryDate}}"><br>
+
+            <label for="serviceStatus">Status do Serviço:</label>
+            <input type="text" id="serviceStatus" name="serviceStatus" value="{{car.serviceStatus}}"><br>
+
+            <label for="problemDescription">Descrição do Problema:</label>
+            <textarea id="problemDescription" name="problemDescription" required>{{car.problemDescription}}</textarea><br>
+
+            <label for="repairsCarriedOut">Reparos Realizados:</label>
+            <input type="text" id="repairsCarriedOut" name="repairsCarriedOut" value="{{car.repairsCarriedOut}}"><br>
+
+            <label for="ownersName">Nome do Proprietário:</label>
+            <input type="text" id="ownersName" name="ownersName" value="{{car.ownersName}}" required><br>
+
+            <label for="ownersEmail">Email do Proprietário:</label>
+            <input type="email" id="ownersEmail" name="ownersEmail" value="{{car.ownersEmail}}"><br>
+
+            <label for="ownersPhoneOne">Telefone 1 do Proprietário:</label>
+            <input type="tel" id="ownersPhoneOne" name="ownersPhoneOne" value="{{car.ownersPhoneOne}}" required><br>
+
+            <label for="ownersPhoneTwo">Telefone 2 do Proprietário:</label>
+            <input type="tel" id="ownersPhoneTwo" name="ownersPhoneTwo" value="{{car.ownersPhoneTwo}}"><br>
+
+            <label for="ownersCpf">CPF do Proprietário:</label>
+            <input type="text" id="ownersCpf" name="ownersCpf" value="{{car.ownersCpf}}" required><br>
+
+            <label for="deliveryDate">Data de Entrega:</label>
+            <input type="date" id="deliveryDate" name="deliveryDate" value="{{formatDate car.deliveryDate}}"><br>
+
+            <label for="repairPrice">Preço do Reparos:</label>
+            <input type="number" id="repairPrice" name="repairPrice" step="0.01" value="{{car.repairPrice}}"><br>
+
+            <label for="paymentMethod">Método de Pagamento:</label>
+            <input type="text" id="paymentMethod" name="paymentMethod" value="{{car.paymentMethod}}"><br>
+
+            <button type="submit">Atualizar</button>
+
+            <button type="submit">Update</button>
+        </form>
+    {{/if}}
+</main>

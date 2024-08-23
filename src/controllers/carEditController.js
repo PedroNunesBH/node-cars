@@ -4,9 +4,8 @@ const CarModel = require("../models/carModel")
 exports.editCar = async (req, res) => {
     const licensePlate = req.params.licensePlate
 
-    console.log(licensePlate)
+    const carMongo = await CarModel.findOne({ licensePlate: licensePlate})
+    const car = carMongo.toObject()
 
-    const car = await CarModel.find({ licensePlate: licensePlate})
-    const carObject = car.map(car => car.toObject())
-
-    console.log(carObject)}
+    res.render("carEdit", { car })
+}
