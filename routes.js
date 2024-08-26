@@ -13,4 +13,6 @@ route.post("/registercar", registerCarController.registerCarPost)
 route.get("/allcars", allCarsController.listAllCars)
 
 route.get("/car/:licensePlate", carEditController.editCar)
+route.post("/car/:licensePlate", carEditController.editCarPost)
+
 module.exports = route
