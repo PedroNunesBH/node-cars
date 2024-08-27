@@ -5,40 +5,50 @@ exports.editCar = async (req, res) => {
     const licensePlate = req.params.licensePlate
 
     const carMongo = await CarModel.findOne({ licensePlate: licensePlate})
-    const car = carMongo.toObject()
-
-    res.render("carEdit", { car })
+    if (carMongo != null) {
+        const car = carMongo.toObject()
+        res.render("carEdit", { car })
+    } else {
+        res.render("carEdit")
+    }
 }
 
 exports.editCarPost = async (req, res) => {
+    const btn = req.body.btn
+    console.log(btn)
     const carLicensePlate = req.params.licensePlate
 
-    const {model, brand, licensePlate, carYear, entryDate, serviceStatus, problemDescription,repairsCarriedOut,
-         ownersName, ownersEmail, ownersPhoneOne, ownersPhoneTwo, ownersCpf, deliveryDate,
-         repairPrice, paymentMethod} = req.body;
+    if (btn === "update") {
 
-    const carToEdit = {
-        model,
-        brand,
-        licensePlate,
-        carYear,
-        entryDate,
-        serviceStatus,
-        problemDescription,
-        repairsCarriedOut,
-        ownersName,
-        ownersEmail,
-        ownersPhoneOne,
-        ownersPhoneTwo,
-        ownersCpf,
-        deliveryDate,
-        repairPrice,
-        paymentMethod
-    }
+        const {model, brand, licensePlate, carYear, entryDate, serviceStatus, problemDescription,repairsCarriedOut,
+            ownersName, ownersEmail, ownersPhoneOne, ownersPhoneTwo, ownersCpf, deliveryDate,
+            repairPrice, paymentMethod} = req.body;
 
-    const carUpdated = await CarModel.findOneAndUpdate({ licensePlate: licensePlate }, carToEdit, { new: true }).then().
-    catch(err => console.error(err))
+        const carToEdit = {
+            model,
+            brand,
+            licensePlate,
+            carYear,
+            entryDate,
+            serviceStatus,
+            problemDescription,
+            repairsCarriedOut,
+            ownersName,
+            ownersEmail,
+            ownersPhoneOne,
+            ownersPhoneTwo,
+            ownersCpf,
+            deliveryDate,
+            repairPrice,
+            paymentMethod
+        }
 
-    const car = carUpdated.toObject()
-    res.render("carEdit", { car })
-}
+        const carUpdated = await CarModel.findOneAndUpdate({ licensePlate: licensePlate }, carToEdit, { new: true }).then().
+        catch(err => console.error(err))
+
+        const car = carUpdated.toObject()
+        res.render("carEdit", { car })
+    } else {
+         await CarModel.deleteOne({ licensePlate: carLicensePlate})
+        res.redirect("/allCars")
+    }}
