@@ -1,10 +1,13 @@
 require("dotenv").config()
 
 const express = require("express")
-const routes = require("./routes")
 const path = require("path")
 const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
+const homeRoutes = require("./src/routes/homeRoutes.js")
+const registerRoutes = require("./src/routes/registerRoutes.js")
+const allCarRoutes = require("./src/routes/allCarRoutes.js")
+const carRoutes = require("./src/routes/carRoutes.js")
 
 mongoose.connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -36,7 +39,10 @@ app.engine('hbs', exphbs.engine(
     }}))
 app.set("view engine", "hbs")
 
-app.use(routes)
+app.use(homeRoutes)
+app.use(registerRoutes)
+app.use(allCarRoutes)
+app.use(carRoutes)
 
 app.on("dbReady", () => {
     app.listen(3000, () => {
