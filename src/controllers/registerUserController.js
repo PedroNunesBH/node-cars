@@ -7,11 +7,12 @@ exports.registerUserGet = (req, res) => {
 }
 
 exports.registerUserPost = async (req, res) => {
-    const {username, email, password} = req.body
+    const {username, email, password, usertype} = req.body
     const user = {
         username,
         email,
-        password
+        password,
+        usertype
     }
 
     const userMongo = await UserModel.create(user)
