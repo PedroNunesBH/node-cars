@@ -8,6 +8,7 @@ const homeRoutes = require("./src/routes/homeRoutes.js")
 const registerRoutes = require("./src/routes/registerRoutes.js")
 const allCarRoutes = require("./src/routes/allCarRoutes.js")
 const carRoutes = require("./src/routes/carRoutes.js")
+const userRoutes = require("./src/routes/registerUser.js")
 
 mongoose.connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -43,6 +44,7 @@ app.use(homeRoutes)
 app.use(registerRoutes)
 app.use(allCarRoutes)
 app.use(carRoutes)
+app.use(userRoutes)
 
 app.on("dbReady", () => {
     app.listen(3000, () => {
