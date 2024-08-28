@@ -4,4 +4,6 @@ const registerUserControllers = require("../controllers/registerUserController")
 
 route.get("/registeruser", registerUserControllers.registerUserGet)
 
+route.post("/registeruser", registerUserControllers.registerUserPost)
+
 module.exports = route
