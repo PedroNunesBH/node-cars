@@ -5,10 +5,10 @@ const path = require("path")
 const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
 const homeRoutes = require("./src/routes/homeRoutes.js")
-const registerRoutes = require("./src/routes/registerRoutes.js")
+const registerCarRoutes = require("./src/routes/registerCarRoutes.js")
 const allCarRoutes = require("./src/routes/allCarRoutes.js")
 const carRoutes = require("./src/routes/carRoutes.js")
-const userRoutes = require("./src/routes/registerUser.js")
+const registerUserRoutes = require("./src/routes/registerUserRoutes.js")
 
 mongoose.connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -41,10 +41,10 @@ app.engine('hbs', exphbs.engine(
 app.set("view engine", "hbs")
 
 app.use(homeRoutes)
-app.use(registerRoutes)
+app.use(registerCarRoutes)
 app.use(allCarRoutes)
 app.use(carRoutes)
-app.use(userRoutes)
+app.use(registerUserRoutes)
 
 app.on("dbReady", () => {
     app.listen(3000, () => {
