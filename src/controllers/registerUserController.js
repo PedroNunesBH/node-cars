@@ -17,5 +17,5 @@ exports.registerUserPost = async (req, res) => {
 
     const userMongo = await UserModel.create(user)
     console.log(userMongo)
-    res.render("registerUser")
+    res.redirect("allUsers")
 }
