@@ -1,0 +1,29 @@
+<main>
+    {{#if allUsersObjects.length }}
+        <table class="table-all-cars">
+            <thead>
+                <tr>
+                    <th>Tipo do Usuário</th>
+                    <th>Usuário</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each allUsersObjects}}
+                <tr>
+                    <td>{{this.usertype}}</td>
+                    <td>{{this.username}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.password}}</td>
+                    <td><a class="table-all-cars-edit-link" href="/car/{{this.licensePlate}}">Editar</a>
+                    <a class="table-all-cars-del-link">Excluir</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>Não há usuários registrados.</p>
+    {{/if}}
+</main>
