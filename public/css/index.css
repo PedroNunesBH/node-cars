@@ -70,3 +70,22 @@ html, body {
     border: 2px solid green;
     border-radius: 5px;
 }
+
+.div-form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 500px;
+    width: 400px;
+}
+
+.login-btn {
+    color: white;
+    background-color: green;
+    border: 3px solid green;
+    border-radius: 4px;
+}
+
+.index-title {
+    text-align: center;
+}
