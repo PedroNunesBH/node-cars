@@ -4,6 +4,9 @@ const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
+const bcrypt = require("bcryptjs")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
 const homeRoutes = require("./src/routes/homeRoutes.js")
 const registerCarRoutes = require("./src/routes/registerCarRoutes.js")
 const allCarRoutes = require("./src/routes/allCarRoutes.js")
@@ -40,6 +43,16 @@ app.engine('hbs', exphbs.engine(
         }
     }}))
 app.set("view engine", "hbs")
+
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.CONNECTION_STRING
+    }),
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dia
+  }));
 
 app.use(homeRoutes)
 app.use(registerCarRoutes)
