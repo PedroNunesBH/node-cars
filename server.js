@@ -53,7 +53,7 @@ app.use(session({
       mongoUrl: process.env.CONNECTION_STRING
     }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dia
-  }));
+  }))
 
 app.use(homeRoutes)
 app.use(registerCarRoutes)
