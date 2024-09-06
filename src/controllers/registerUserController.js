@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const UserModel = require("../models/userModel")
+const bcrypt = require("bcryptjs")
 
 
 exports.registerUserGet = (req, res) => {
@@ -8,10 +9,11 @@ exports.registerUserGet = (req, res) => {
 
 exports.registerUserPost = async (req, res) => {
     const {username, email, password, usertype} = req.body
+    const hashedPassword = await bcrypt.hash(password, 10)
     const user = {
         username,
         email,
-        password,
+        password: hashedPassword,
         usertype
     }
 
