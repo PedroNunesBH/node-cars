@@ -1,7 +1,7 @@
 const express = require("express")
 const route = express.Router()
 const registerCarController = require("../controllers/registerCarController")
-const authMiddleware = require("../middleware/authMiddleware")
+const authMiddleware = require("../middlewares/authMiddleware")
 
 route.get("/registercar", authMiddleware, registerCarController.registerCar)
 route.post("/registercar", authMiddleware, registerCarController.registerCarPost)
