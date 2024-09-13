@@ -15,8 +15,10 @@
             <li><a href="/">Início</a></li>
             <li><a href="/registercar">Novo Registro</a></li>
             <li><a href="/allcars">Todos os Carros</a></li>
+            {{#if userIsAdmin}}
             <li><a href="/allusers">Todos os Usuários</a></li>
             <li><a href="/registeruser">Cadastrar Usuário</a></li>
+            {{/if}}
             <li><a href="#">Contato</a></li>
             {{#if user}}
             <li><a href="/logout">Sair</a></li>
