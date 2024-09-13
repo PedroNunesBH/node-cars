@@ -1,7 +1,7 @@
 const express = require("express")
 const route = express.Router()
 const registerUserControllers = require("../controllers/registerUserController")
-const authMiddleware = require("../middleware/authMiddleware")
+const authMiddleware = require("../middlewares/authMiddleware")
 
 route.get("/registeruser", authMiddleware, registerUserControllers.registerUserGet)
 

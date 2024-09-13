@@ -1,7 +1,7 @@
 const express = require("express")
 const route = express.Router()
 const logouController = require("../controllers/logoutControlller")
-const authMiddleware = require("../middleware/authMiddleware")
+const authMiddleware = require("../middlewares/authMiddleware")
 
 route.get("/logout", authMiddleware, logouController.logout)
 
