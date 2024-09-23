@@ -1,12 +1,19 @@
 <main>
     <h2 class="index-title">Bem Vindo ao Sistema Interno da Auto Mecânica</h2>
-    <form class="div-form-login" method="post" action="">
-        <label for="username">Usuário :</label>
-        <input name="username" id="username">
+    {{#if user}}
+        <p>Você já está logado no sistema.</p>
+    {{else}}
+        <form class="div-form-login" method="post" action="">
+            <label for="username">Usuário :</label>
+            <input name="username" id="username">
 
-        <label for="password">Senha :</label>
-        <input name="password" id="password">
+            <label for="password">Senha :</label>
+            <input name="password" id="password">
 
-        <button class="login-btn" type="submit">Login</button>
-    </form>
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+    {{/if}}
+        {{#if session.incorrectAuthMsg}}
+            <p>{{session.incorrectAuthMsg}}</p>
+        {{/if}}
 </main>
