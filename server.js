@@ -55,10 +55,18 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dia
   }))
 
-  app.use((req, res, next) => {
-    res.locals.session = req.session;
-    next();
-  });
+app.use((req, res, next) => {
+res.locals.session = req.session;
+if (req.session.user) {
+    const userType = req.session.user.usertype
+    if (userType == "adm") {
+        res.locals.userAdmin = true
+    } else {
+        res.locals.userAdmin = false
+    }
+}
+next();
+});
 
 app.use(homeRoutes)
 app.use(registerCarRoutes)

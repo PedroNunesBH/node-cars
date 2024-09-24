@@ -15,10 +15,11 @@ exports.homePost = async (req, res) => {
         if (user && await bcrypt.compare(password, user.password)) {
             req.session.user = user
             res.redirect("/allcars")
+            req.session.incorrectAuthMsg = null
+            console.log(req.session)
     } else { 
         req.session.incorrectAuthMsg = "O username e/ou senha inseridos estão incorretos.Tente novamente"
         res.redirect("/")
-        req.session.incorrectAuthMsg = null
     }
     } catch (error) {
         res.redirect("/")
