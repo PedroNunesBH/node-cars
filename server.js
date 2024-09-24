@@ -1,8 +1,8 @@
 require("dotenv").config()
 
 const express = require("express")
+const app = express()
 const path = require("path")
-const mongoose = require("mongoose")
 const exphbs = require("express-handlebars")
 const bcrypt = require("bcryptjs")
 const session = require("express-session")
@@ -15,16 +15,8 @@ const registerUserRoutes = require("./src/routes/registerUserRoutes.js")
 const usersRoutes = require("./src/routes/usersRoutes.js")
 const logoutRoutes = require("./src/routes/logoutRoutes.js")
 
-mongoose.connect(process.env.CONNECTION_STRING)
-    .then(() => {
-        console.log("Conexão com o BD ok.")
-        app.emit("dbReady")
-    })
-    .catch((err) => {
-        console.error("Ocorreu um erro ao tentar a conexão", err)
-    })
+require("./src/config/db.js")(app)
 
-app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.resolve(__dirname, "public")))
