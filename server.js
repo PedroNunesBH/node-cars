@@ -4,9 +4,6 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const exphbs = require("express-handlebars")
-const bcrypt = require("bcryptjs")
-const session = require("express-session")
-const MongoStore = require("connect-mongo")
 const homeRoutes = require("./src/routes/homeRoutes.js")
 const registerCarRoutes = require("./src/routes/registerCarRoutes.js")
 const allCarRoutes = require("./src/routes/allCarRoutes.js")
@@ -16,6 +13,7 @@ const usersRoutes = require("./src/routes/usersRoutes.js")
 const logoutRoutes = require("./src/routes/logoutRoutes.js")
 
 require("./src/config/db.js")(app)
+require("./src/config/session.js")(app)
 
 
 app.use(express.urlencoded({ extended: true }))
@@ -36,16 +34,6 @@ app.engine('hbs', exphbs.engine(
         }
     }}))
 app.set("view engine", "hbs")
-
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.CONNECTION_STRING
-    }),
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dia
-  }))
 
 app.use((req, res, next) => {
 res.locals.session = req.session;
