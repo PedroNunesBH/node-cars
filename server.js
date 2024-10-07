@@ -14,26 +14,11 @@ const logoutRoutes = require("./src/routes/logoutRoutes.js")
 
 require("./src/config/db.js")(app)
 require("./src/config/session.js")(app)
+require("./src/config/hbs_engine.js")(app)
 
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.resolve(__dirname, "public")))
-
-app.set("views", path.resolve(__dirname, "src", "views"))
-app.engine('hbs', exphbs.engine(
-    {extname: "hbs",
-    helpers: {
-        formatDate: function (datetime) {
-            const date = new Date(datetime)
-
-            const datePart = date.toLocaleDateString("pt-br")
-
-            const timePart = date.toLocaleTimeString("pt-br")
-
-            return `${datePart} ${timePart}`
-        }
-    }}))
-app.set("view engine", "hbs")
 
 app.use((req, res, next) => {
 res.locals.session = req.session;
