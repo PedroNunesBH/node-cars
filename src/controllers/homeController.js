@@ -14,9 +14,8 @@ exports.homePost = async (req, res) => {
         const user = await UserModel.findOne({username: username})
         if (user && await bcrypt.compare(password, user.password)) {
             req.session.user = user
+            delete req.session.incorrectAuthMsg
             res.redirect("/allcars")
-            req.session.incorrectAuthMsg = null
-            console.log(req.session)
     } else { 
         req.session.incorrectAuthMsg = "O username e/ou senha inseridos estão incorretos.Tente novamente"
         res.redirect("/")
