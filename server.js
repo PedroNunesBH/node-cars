@@ -1,9 +1,6 @@
-require("dotenv").config()
-
 const express = require("express")
 const app = express()
 const path = require("path")
-const exphbs = require("express-handlebars")
 const homeRoutes = require("./src/routes/homeRoutes.js")
 const registerCarRoutes = require("./src/routes/registerCarRoutes.js")
 const allCarRoutes = require("./src/routes/allCarRoutes.js")
@@ -15,23 +12,11 @@ const logoutRoutes = require("./src/routes/logoutRoutes.js")
 require("./src/config/db.js")(app)
 require("./src/config/session.js")(app)
 require("./src/config/hbs_engine.js")(app)
+require("./src/middlewares/sessionMiddleware.js")(app)
 
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.resolve(__dirname, "public")))
-
-app.use((req, res, next) => {
-res.locals.session = req.session;
-if (req.session.user) {
-    const userType = req.session.user.usertype
-    if (userType == "adm") {
-        res.locals.userAdmin = true
-    } else {
-        res.locals.userAdmin = false
-    }
-}
-next();
-});
 
 app.use(homeRoutes)
 app.use(registerCarRoutes)
