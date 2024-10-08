@@ -6,5 +6,6 @@ const isAdminMiddleware = require("../middlewares/isAdminMiddleware")
 
 route.get("/allusers", authMiddleware, isAdminMiddleware, usersController.allUsersGet)
 
+route.get("/user/:username", authMiddleware, isAdminMiddleware, usersController.userDetail)
 
 module.exports = route
