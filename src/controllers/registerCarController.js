@@ -30,5 +30,5 @@ exports.registerCarPost = (req, res) => {
         console.log(err)
     })
     
-    res.render("registerCar.hbs")
+    res.redirect("/allcars")
 }
