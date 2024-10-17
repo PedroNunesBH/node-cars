@@ -12,9 +12,33 @@ exports.userDetail = async (req, res) => {
     const userMongo = await UserModel.findOne({username: username});
     
     if (userMongo != null) {
-        const user = userMongo.toObject();  // Corrigido: use userMongo.toObject()
+        const user = userMongo.toObject(); 
         res.render("userEdit", { user });
     } else {
         res.render("userEdit");
     }
 };
+
+exports.userEdit = async (req, res) => {
+    const userUsername = req.params.username
+    console.log(req.params.username)
+    const btn = req.body.btn
+
+    if(btn === "update") {
+        const {username, email, senha, usertype} = req.body
+
+        const userToEdit = {
+            username, 
+            email, 
+            senha,
+            usertype
+        }
+
+        await UserModel.findOneAndUpdate({ username: userUsername }, userToEdit, { new: true })
+
+        res.redirect("/allusers")
+    } else {
+        await UserModel.deleteOne({username: userUsername})
+        res.redirect("/allusers")
+    }
+}
