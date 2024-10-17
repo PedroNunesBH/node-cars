@@ -15,7 +15,6 @@ exports.editCar = async (req, res) => {
 
 exports.editCarPost = async (req, res) => {
     const btn = req.body.btn
-    console.log(btn)
     const carLicensePlate = req.params.licensePlate
 
     if (btn === "update") {
@@ -43,11 +42,10 @@ exports.editCarPost = async (req, res) => {
             paymentMethod
         }
 
-        const carUpdated = await CarModel.findOneAndUpdate({ licensePlate: licensePlate }, carToEdit, { new: true }).then().
+        await CarModel.findOneAndUpdate({ licensePlate: carLicensePlate }, carToEdit, { new: true }).then().
         catch(err => console.error(err))
 
-        const car = carUpdated.toObject()
-        res.render("carEdit", { car })
+        res.redirect("/allcars")
     } else {
         await CarModel.deleteOne({ licensePlate: carLicensePlate})
         res.redirect("/allCars")
