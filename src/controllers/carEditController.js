@@ -49,6 +49,6 @@ exports.editCarPost = async (req, res) => {
         const car = carUpdated.toObject()
         res.render("carEdit", { car })
     } else {
-         await CarModel.deleteOne({ licensePlate: carLicensePlate})
+        await CarModel.deleteOne({ licensePlate: carLicensePlate})
         res.redirect("/allCars")
     }}
