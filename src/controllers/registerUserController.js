@@ -17,7 +17,16 @@ exports.registerUserPost = async (req, res) => {
         usertype
     }
 
-    const userMongo = await UserModel.create(user)
-    console.log(userMongo)
-    res.redirect("allUsers")
+    try {
+        await UserModel.create(user)
+        res.redirect("allUsers")
+    } catch (error) {
+        console.log(error)
+        if(error.code == 11000) {
+            errorMessage = "Já existe um usuário cadastrado com esse email ou username."
+        } else {
+            errorMessage = "Ocorreu um erro. Tente novamente mais tarde."
+        }
+        res.render("registerUser.hbs", {errorMessage})
+    }
 }
