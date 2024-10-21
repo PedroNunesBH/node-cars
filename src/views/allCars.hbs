@@ -8,11 +8,14 @@
                     <th>Placa</th>
                     <th>Ano</th>
                     <th>Data de Entrada</th>
+                    <th>Descrição do Problema</th>
                     <th>Status do Serviço</th>
                     <th>Nome do Proprietário</th>
                     <th>Email do Proprietário</th>
                     <th>Telefone do Proprietário 1</th>
-                    <th>Telefone do Proprietário 2</th>
+                    <th>Reparos Realizados</th>
+                    <th>Preço do Reparo</th>
+                    <th>Método de Pagamento</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -24,11 +27,14 @@
                     <td>{{this.licensePlate}}</td>
                     <td>{{this.carYear}}</td>
                     <td>{{formatDate this.entryDate}}</td>
+                    <td>{{this.problemDescription}}</td>
                     <td>{{this.serviceStatus}}</td>
                     <td>{{this.ownersName}}</td>
                     <td>{{this.ownersEmail}}</td>
                     <td>{{this.ownersPhoneOne}}</td>
-                    <td>{{this.ownersPhoneTwo}}</td>
+                    <td>{{this.repairsCarriedOut}}</td>
+                    <td>{{this.repairPrice}}</td>
+                    <td>{{this.paymentMethod}}</td>
                     <td><a class="table-all-cars-edit-link" href="/car/{{this.licensePlate}}">Editar</a>
                     <a class="table-all-cars-del-link">Excluir</a></td>
                 </tr>
