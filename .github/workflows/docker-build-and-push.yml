@@ -30,3 +30,6 @@ jobs:
         with:
           push: true
           tags: pedrohnunes99/node-cars:latest
+        env:
+          CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
